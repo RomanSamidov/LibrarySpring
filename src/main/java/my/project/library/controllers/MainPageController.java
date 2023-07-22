@@ -1,4 +1,4 @@
-package my.project.alishevspringcourse.controllers;
+package my.project.library.controllers;
 
 
 import org.springframework.stereotype.Controller;

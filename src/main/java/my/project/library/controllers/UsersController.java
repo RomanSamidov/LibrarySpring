@@ -1,13 +1,13 @@
-package my.project.alishevspringcourse.controllers;
+package my.project.library.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class BooksController {
+public class UsersController {
 
-    @GetMapping("/books")
+    @GetMapping("/users")
     public String getBooks(){
-        return "books";
+        return "users";
     }
 }
