@@ -2,6 +2,10 @@
 -- insert into role values (default, 'librarian');
 -- insert into role values (default, 'reader');
 
+-- insert into status values (default, 'created');
+-- insert into status values (default, 'preparing');
+-- insert into status values (default, 'ready');
+
 insert into "user" values (default, 'Admin', '2000-12-11', 1, 'admin1@gmail.com', default, default, 'admin1');
 insert into "user" values (default, 'Librarian', '2000-12-11', 2, 'librarian1@gmail.com', default, default, 'librarian1');
 insert into "user" values (default, 'Librarian', '2000-12-11', 2, 'librarian2@gmail.com', default, default, 'librarian2');
@@ -24,6 +28,9 @@ insert into "user" values (default, 'user18', '2000-12-11', 3, 'email18@gmail.co
 insert into "user" values (default, 'user19', '2000-12-11', 3, 'email19@gmail.com', default, default, 'login19');
 insert into "user" values (default, 'user20', '2000-12-11', 3, 'email20@gmail.com', default, default, 'login20');
 insert into "user" values (default, 'user21', '2000-12-11', 3, 'email21@gmail.com', default, default, 'login21');
+
+
+insert into block values (21);
 
 
 insert into password values (1, 'password');
@@ -115,7 +122,7 @@ insert into cart values (4, 2, 3);
 insert into cart values (4, 3, 4);
 
 
-insert into "order" values (default, 4, '2023-12-06');
+insert into "order" values (default, 4, '2023-12-06', 1);
 
 
 insert into order_book values (1, 4, 2);
