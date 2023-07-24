@@ -8,12 +8,12 @@ Use Hibernate, Spring Data JPA.
 Tables:
 - role(id, name)
 - language(id, name)
-- user(id, full_name, date_of_birth, role_id, language_id, email, allow_letters, confirmed, login)
+- user(id, name, date_of_birth, role_id, language_id, email, allow_letters, confirmed, login)
 - block(user_id)
 - password(user_id, password)
 
 
-- author(id, full_name)
+- author(id, name)
 - publisher(id, name)
 - book(id, quantity, occupied, title, author_id, publisher_id, year)
 - tag(id, name)

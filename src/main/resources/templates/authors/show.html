@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Show one</title>
+    <title>Show author</title>
 </head>
 <body>
+
+<p th:text="*{author.getId()}">Value</p>
+<p th:text="*{author.getName()}">Value</p>
+<a href="/authors">To authors</a>
+<a th:href="@{/authors/{id}/edit(id=${author.getId()})}"> Edit</a>
 
 </body>
 </html>

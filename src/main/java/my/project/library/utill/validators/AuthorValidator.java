@@ -26,6 +26,9 @@ public class AuthorValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Author author = (Author)target;
 
+        if(authorsService.findOne(author.getName()).isPresent()){
+            errors.rejectValue("name", "", "Name is already exist!");
+        }
 
     }
 }

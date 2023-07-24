@@ -36,7 +36,7 @@ INSERT INTO language VALUES (DEFAULT, 'uk_UA');
 
 create table "user"(
     id bigint generated always as identity primary key,
-    full_name varchar(64) not null,
+    name varchar(64) not null,
     date_of_birth date not null,
     role_id bigint references role(id) on delete cascade not null,
     language_id bigint references language(id) default(1) not null,
@@ -57,7 +57,7 @@ create table password(
 
 create table author(
     id bigint generated always as identity primary key,
-    full_name varchar(64) not null unique
+    name varchar(64) not null unique
 );
 
 create table publisher(

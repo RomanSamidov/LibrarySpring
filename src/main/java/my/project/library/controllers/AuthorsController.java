@@ -22,15 +22,28 @@ public class AuthorsController {
         this.authorValidator = authorValidator;
     }
 
+//    @GetMapping()
+//    public String index(Model model){
+//        System.out.println("index");
+//        model.addAttribute("authors", authorsService.findAll());
+//        return "authors/index";
+//    }
+
     @GetMapping()
-    public String index(Model model){
-        // preparation to show all
+    public String index(@RequestParam(value = "startingWith", required = false) String startingWith, Model model){
+
+        if(startingWith == null || startingWith.isEmpty()){
+            model.addAttribute("authors", authorsService.findAll());
+        } else {
+            model.addAttribute("authors", authorsService.findAllStartingWith(startingWith));
+        }
+
         return "authors/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") long id, Model model){
-        //preparation to show one
+        model.addAttribute("author", authorsService.findOne(id).get());
         return "authors/show";
     }
 
@@ -45,12 +58,13 @@ public class AuthorsController {
         authorValidator.validate(author, bindingResult);
         if(bindingResult.hasErrors())
             return "authors/new";
-        //authorsService.save(author);
+        authorsService.save(author);
         return "redirect:/authors";
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") long id){
+    public String edit(@PathVariable("id") long id, Model model){
+        model.addAttribute("author", authorsService.findOne(id).get());
         return "authors/edit";
     }
 
@@ -60,14 +74,13 @@ public class AuthorsController {
         authorValidator.validate(author, bindingResult);
         if(bindingResult.hasErrors())
             return "authors/edit";
-
-//        authorsService.update(id, author);
+        authorsService.update(id, author);
         return "redirect:/authors/" + id;
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id){
-//        authorsService.delete(id);
+        authorsService.delete(id);
         return "redirect:/authors";
     }
 }
