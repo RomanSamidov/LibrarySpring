@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainPageController {
 
-    @GetMapping("/*")
+    @GetMapping()
     public String mainPage(){
-        return "main";
+        return "index";
     }
 }

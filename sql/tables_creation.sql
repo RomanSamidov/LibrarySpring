@@ -51,7 +51,7 @@ create table block(
 );
 
 create table password(
-    user_id bigint references "user"(id) on delete cascade not null,
+    user_id bigint references "user"(id) on delete cascade not null unique primary key,
     password varchar(128) not null
 );
 
