@@ -3,8 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>All users</title>
+    <link rel="stylesheet" th:href="@{css/styles.css}">
 </head>
 <body>
+<div class="center-div">
+    <table class="center-table">
+        <tr>
+            <th> <a>ID</a> </th>
+            <th> <a>login</a> </th>
+            <th> <a>ID</a> </th>
+            <th> <a>password</a> </th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td>
+                <a th:text="${user.getId()}"></a>
+            </td>
+            <td>
+                <a th:href="@{/user/{id}(id=${user.getId()})}" th:text="${user.getLogin()}">user</a>
+            </td>
+        </tr>
+        <tr th:each="password : ${passwords}">
+            <td>
+                <a th:text="${password.getId()}"></a>
+            </td>
+            <td>
+                <a th:text="${password.getPassword()}"></a>
+            </td>
+            <td>
+                <a th:href="@{/user/{id}(id=${password.getUser().getId()})}" th:text="${password.getUser().getLogin()}">user</a>
+            </td>
+        </tr>
+    </table>
 
+
+</div>
 </body>
 </html>

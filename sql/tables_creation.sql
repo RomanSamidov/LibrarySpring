@@ -43,7 +43,7 @@ create table "user"(
     email varchar(64) not null,
     allow_letters bool default(true) not null,
     confirmed bool default(false) not null,
-    login varchar(64) not null
+    login varchar(64) not null unique
 );
 
 create table block(

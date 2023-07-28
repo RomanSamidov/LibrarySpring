@@ -3,24 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>All authors</title>
+    <link rel="stylesheet" th:href="@{css/styles.css}">
 </head>
 <body>
-
-<div th:each="author : ${authors}">
-    <a th:href="@{/authors/{id}(id=${author.getId()})}" th:text="${author.getName()}">author</a>
-</div>
-
-<form th:method="GET" th:action="@{/authors}" >
-    <label for="startingWith">startingWith: </label>
-    <input type="text" value="startingWith" name="startingWith" id="startingWith">
+<div class="center-div">
+    <form th:method="GET" th:action="@{/authors}" >
+        <label for="startingWith">startingWith: </label>
+        <input type="text" th:value="${startingWith}" name="startingWith" id="startingWith">
+        <input type="submit" value="Find!">
+    </form>
+    <a href="/authors/new"> Create new author!</a>
+    <br><br><br>
     <br>
-    <input type="submit" value="Find!">
-</form>
+    <table class="center-table">
+        <tr>
+            <th> <a>ID</a> </th>
+            <th> <a>NAME</a> </th>
+        </tr>
+            <tr th:each="author : ${authors}">
+                 <td>
+                     <a th:text="${author.getId()}"></a>
+                 </td>
+                 <td>
+                     <a th:href="@{/authors/{id}(id=${author.getId()})}" th:text="${author.getName()}">author</a>
+                 </td>
+            </tr>
+    </table>
+
+    <br><br><br>
+    <form th:method="GET" th:action="@{/authors}" >
+        <label>sorting: </label>
+        <select name="sort">
+            <div th:each="sort : ${sorting}">
+                <option th:value="${sort.name()}" th:text="${sort.name()}">${sort.name()}</option>
+            </div>
+        </select>
+        <input type="submit" value="Sort!">
+    </form>
 
 
-<br>
-<hr>
-<a href="/authors/new"> Create new author!</a>
+    <form th:method="GET" th:action="@{/authors}" >
+        <label>Size on one page</label>
+        <input type="hidden" th:value="${startingWith}" name="startingWith">
+        <input type="hidden" th:value="0" name="page">
+        <input type="number" min="1" size="3" th:value="${size}" name="size">
+        <input type="submit" value="change size">
+    </form>
 
+
+    <table>
+        <tr>
+            <form th:method="GET" th:action="@{/authors}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="0" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value="<<">
+            </form>
+
+            <form th:method="GET" th:action="@{/authors}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="${page}-1" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value="<">
+            </form>
+            <form th:method="GET" th:action="@{/authors}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="number" min="1" size="3" th:max="${maxPage}" th:value="${page}" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <a th:text="${#strings.concat(page, ' of ', maxPage)}"/>
+                <input type="submit" value="to page!">
+            </form>
+
+            <form th:method="GET" th:action="@{/authors}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="${page}+1" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value=">">
+            </form>
+            <form th:method="GET" th:action="@{/authors}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="${maxPage}" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value=">>">
+            </form>
+        </tr>
+    </table>
+
+</div>
 </body>
 </html>

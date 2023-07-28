@@ -33,27 +33,27 @@ insert into "user" values (default, 'user21', '2000-12-11', 3, 2, 'email21@gmail
 insert into block values (21);
 
 
-insert into password values (1, 'password');
-insert into password values (2, 'password');
-insert into password values (3, 'password');
-insert into password values (4, 'password');
-insert into password values (5, 'password');
-insert into password values (6, 'password');
-insert into password values (7, 'password');
-insert into password values (8, 'password');
-insert into password values (9, 'password');
-insert into password values (10, 'password');
-insert into password values (11, 'password');
-insert into password values (12, 'password');
-insert into password values (13, 'password');
-insert into password values (14, 'password');
-insert into password values (15, 'password');
-insert into password values (16, 'password');
-insert into password values (17, 'password');
-insert into password values (18, 'password');
-insert into password values (19, 'password');
-insert into password values (20, 'password');
-insert into password values (21, 'password');
+insert into password values (1, 'password1');
+insert into password values (2, 'password2');
+insert into password values (3, 'password3');
+insert into password values (4, 'password4');
+insert into password values (5, 'password5');
+insert into password values (6, 'password6');
+insert into password values (7, 'password7');
+insert into password values (8, 'password8');
+insert into password values (9, 'password9');
+insert into password values (10, 'password10');
+insert into password values (11, 'password11');
+insert into password values (12, 'password12');
+insert into password values (13, 'password13');
+insert into password values (14, 'password14');
+insert into password values (15, 'password15');
+insert into password values (16, 'password16');
+insert into password values (17, 'password17');
+insert into password values (18, 'password18');
+insert into password values (19, 'password19');
+insert into password values (20, 'password20');
+insert into password values (21, 'password21');
 
 
 insert  into author values (default, 'author1');

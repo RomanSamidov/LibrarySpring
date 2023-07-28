@@ -1,8 +1,11 @@
 package my.project.library.services;
 
 import my.project.library.models.Author;
+import my.project.library.models.enums.sortings.AuthorsSorting;
 import my.project.library.repositories.AuthorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,16 +24,26 @@ public class AuthorsService {
     }
 
     public Optional<Author> findOne(String name){
-        return authorsRepository.findByNameOrderById(name).stream().findFirst();
+        return authorsRepository.findByName(name).stream().findFirst();
     }
 
-    public List<Author> findAllStartingWith(String startingWith){
-        return authorsRepository.findByNameStartingWithOrderById(startingWith);
+    public List<Author> findAllStartingWith(String startingWith, int page, int size, AuthorsSorting sorting){
+        return authorsRepository.findByNameStartingWith(
+                startingWith,
+                PageRequest.of(page, size,Sort.by(sorting.getDirection(),
+                        sorting.getProperties())));
+    }
+    public long countAllStartingWith(String startingWith){
+        return authorsRepository.countByNameStartingWith(startingWith);
     }
 
 
-    public List<Author> findAll(){
-        return authorsRepository.findAll();
+    public List<Author> findAll(int page, int size, AuthorsSorting sorting){
+        return authorsRepository.findAll(
+                PageRequest.of(page, size, Sort.by(sorting.getDirection(), sorting.getProperties()))).stream().toList();
+    }
+    public long countAll(){
+        return authorsRepository.count();
     }
 
     public Optional<Author> findOne(long id){
