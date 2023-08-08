@@ -3,28 +3,29 @@ package my.project.library.security;
 import my.project.library.models.Password;
 import my.project.library.models.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
-public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
     private final User user;
     private final Password password;
 
-    public UserDetails(User user, Password password) {
+    public UserDetailsImpl(User user, Password password) {
         this.user = user;
         this.password = password;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+        return Collections.emptyList();
     }
 
     @Override
     public String getPassword() {
-        return this.password.getPassword();
+        return this.password.getPasswordText();
     }
 
     @Override
@@ -50,5 +51,9 @@ public class UserDetails implements org.springframework.security.core.userdetail
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

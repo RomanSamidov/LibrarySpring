@@ -10,6 +10,13 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Role(Long id) {
+        this.id = id;
+    }
+
+    public Role() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

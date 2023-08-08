@@ -27,7 +27,7 @@
                 <a th:text="${password.getId()}"></a>
             </td>
             <td>
-                <a th:text="${password.getPassword()}"></a>
+                <a th:text="${password.getPasswordText()}"></a>
             </td>
             <td>
                 <a th:href="@{/user/{id}(id=${password.getUser().getId()})}" th:text="${password.getUser().getLogin()}">user</a>

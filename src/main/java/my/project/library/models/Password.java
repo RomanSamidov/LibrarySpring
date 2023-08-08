@@ -22,13 +22,19 @@ public class Password {
     @NotEmpty(message = "Password cant be empty")
     @Size(min=0, max=64, message = "Max size for password is 128")
     @Column(name = "password")
-    private String password;
+    private String passwordText;
 
 
-    public Password(Long id, User user, String password) {
+    public Password(Long id, User user, String passwordText) {
         this.id = id;
         this.user = user;
-        this.password = password;
+        this.passwordText = passwordText;
+    }
+
+    public Password(String passwordText) {
+        this.id = -10L;
+        this.user = null;
+        this.passwordText = passwordText;
     }
 
     public Password() {
@@ -43,12 +49,12 @@ public class Password {
         this.user = user;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordText() {
+        return passwordText;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordText(String password) {
+        this.passwordText = password;
     }
 
     public void setId(Long id) {

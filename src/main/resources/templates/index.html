@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Main</title>
-    <link rel="stylesheet" th:href="@{css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <div class="center-div">
     Hello, it's me main page!<br>
 
     <a href="/authors">Authors</a> <br>
-    <a href="/users">Users</a>
+    <a href="/users">Users</a> <br>
+    <a href="/auth/registration">Registration</a> <br>
+    <a href="/auth/login">Login</a> <br>
 
 
     <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>

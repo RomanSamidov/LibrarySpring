@@ -3,8 +3,6 @@ package my.project.library.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import my.project.library.models.Language;
-import my.project.library.models.Role;
 
 import java.sql.Date;
 

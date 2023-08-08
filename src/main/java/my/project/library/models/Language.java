@@ -9,6 +9,13 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Language(Long id) {
+        this.id = id;
+    }
+
+    public Language() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -16,4 +23,6 @@ public class Language {
     public Long getId() {
         return id;
     }
+
+
 }

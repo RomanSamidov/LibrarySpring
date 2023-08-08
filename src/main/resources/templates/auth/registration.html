@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="center-div">
+
+
+  <form th:action="@{/auth/registration}" method="post" >
+      <div><label> Name : <input type="text"  th:field="${user.name}" /> </label></div>
+      <div style="color: red" th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}">Name errors</div>
+      <div><label> date of birth : <input type="date" th:field="${user.dateOfBirth}" /> </label></div>
+      <div style="color: red" th:if="${#fields.hasErrors('user.dateOfBirth')}" th:errors="${user.dateOfBirth}">dateOfBirth errors</div>
+      <div><label> Email : <input type="text" th:field="${user.email}" /> </label></div>
+      <div style="color: red" th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}">email errors</div>
+      <div><label> Login : <input type="text" th:field="${user.login}" /> </label></div>
+      <div style="color: red" th:if="${#fields.hasErrors('user.login')}" th:errors="${user.login}">login errors</div>
+
+      <div><label> Password : <input type="password" th:field="${password.passwordText}" /> </label></div>
+      <div style="color: red" th:if="${#fields.hasErrors('password.passwordText')}" th:errors="${password.passwordText}">password errors</div>
+
+      <div><input type="submit" value="Sign up"/></div>
+  </form>
+
+
+</div>
+
+
+</body>
+</html>
