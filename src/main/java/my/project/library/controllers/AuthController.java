@@ -1,11 +1,11 @@
 package my.project.library.controllers;
 
 import jakarta.validation.Valid;
-import my.project.library.models.Language;
 import my.project.library.models.Password;
-import my.project.library.models.Role;
 import my.project.library.models.User;
+import my.project.library.services.LanguagesService;
 import my.project.library.services.RegistrationService;
+import my.project.library.services.RolesService;
 import my.project.library.utill.validators.PasswordValidator;
 import my.project.library.utill.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthController {
 
     private final RegistrationService registrationService;
+    private final RolesService rolesService;
+    private final LanguagesService languagesService;
     private final UserValidator userValidator;
     private final PasswordValidator passwordValidator;
 
     @Autowired
     public AuthController(RegistrationService registrationService,
-                          UserValidator userValidator,
+                          RolesService rolesService, LanguagesService languagesService, UserValidator userValidator,
                           PasswordValidator passwordValidator) {
         this.registrationService = registrationService;
+        this.rolesService = rolesService;
+        this.languagesService = languagesService;
         this.userValidator = userValidator;
         this.passwordValidator = passwordValidator;
     }
@@ -55,8 +59,8 @@ public class AuthController {
             return "/auth/registration";
         }
 
-        user.setRole(new Role(3L));
-        user.setLanguage(new Language(1L));
+        user.setRole(rolesService.findOne(rolesService.READER));
+        user.setLanguage(languagesService.findOne(languagesService.ENGLISH));
         password.setUser(user);
         registrationService.register(user, password);
         return "redirect:/auth/login";

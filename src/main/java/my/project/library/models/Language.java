@@ -2,6 +2,9 @@ package my.project.library.models;
 
 import jakarta.persistence.*;
 
+
+//            en_US(1),
+//            uk_UA(2);
 @Entity
 @Table(name = "language")
 public class Language {
@@ -9,8 +12,12 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Language(Long id) {
+    @Column(name = "name")
+    private String name;
+
+    public Language(Long id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public Language() {
@@ -24,5 +31,17 @@ public class Language {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 
 }

@@ -11,26 +11,37 @@
         <tr>
             <th> <a>ID</a> </th>
             <th> <a>login</a> </th>
-            <th> <a>ID</a> </th>
-            <th> <a>password</a> </th>
+            <th> <a>name</a> </th>
+            <th> <a>date of birth</a> </th>
+            <th> <a>role</a> </th>
+            <th> <a>language</a> </th>
+            <th> <a>email</a> </th>
+            <th> <a>confirmed</a> </th>
         </tr>
         <tr th:each="user : ${users}">
             <td>
                 <a th:text="${user.getId()}"></a>
             </td>
             <td>
-                <a th:href="@{/user/{id}(id=${user.getId()})}" th:text="${user.getLogin()}">user</a>
-            </td>
-        </tr>
-        <tr th:each="password : ${passwords}">
-            <td>
-                <a th:text="${password.getId()}"></a>
+                <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getLogin()}">user</a>
             </td>
             <td>
-                <a th:text="${password.getPasswordText()}"></a>
+                <a th:text="${user.getName()}"></a>
             </td>
             <td>
-                <a th:href="@{/user/{id}(id=${password.getUser().getId()})}" th:text="${password.getUser().getLogin()}">user</a>
+                <a th:text="${user.getDateOfBirth()}"></a>
+            </td>
+            <td>
+                <a th:text="${user.getRole()}"></a>
+            </td>
+            <td>
+                <a th:text="${user.getLanguage()}"></a>
+            </td>
+            <td>
+                <a th:text="${user.getEmail()}"></a>
+            </td>
+            <td>
+                <a th:text="${user.isConfirmed()}"></a>
             </td>
         </tr>
     </table>

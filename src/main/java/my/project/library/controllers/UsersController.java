@@ -2,7 +2,6 @@ package my.project.library.controllers;
 
 import jakarta.validation.Valid;
 import my.project.library.models.User;
-import my.project.library.services.PasswordsService;
 import my.project.library.services.UsersService;
 import my.project.library.utill.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +16,29 @@ public class UsersController {
 
     private final UsersService usersService;
     private final UserValidator userValidator;
-    private final PasswordsService passwordsService;
 
     @Autowired
     public UsersController(UsersService usersService,
-                           UserValidator userValidator,
-                           PasswordsService passwordsService) {
+                           UserValidator userValidator) {
         this.usersService = usersService;
         this.userValidator = userValidator;
-        this.passwordsService = passwordsService;
     }
 
     @GetMapping()
     public String getUsers(Model model){
         model.addAttribute("users", usersService.findAll());
-        model.addAttribute("passwords",passwordsService.findAll());
         return "users/index";
     }
 
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", usersService.findOne(id));
         return "users/show";
     }
 
     @GetMapping("/new")
-    public String newUser(Model model){
-        model.addAttribute("user", new User());
+    public String newUser(@ModelAttribute(value = "user") User user){
         return "users/new";
     }
 
@@ -52,12 +47,13 @@ public class UsersController {
         userValidator.validate(user, bindingResult);
         if(bindingResult.hasErrors())
             return "users/new";
-        //usersService.save(user);
+        usersService.save(user);
         return "redirect:/users";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id){
+        model.addAttribute("user", usersService.findOne(id));
         return "users/edit";
     }
 
@@ -68,13 +64,13 @@ public class UsersController {
         if(bindingResult.hasErrors())
             return "users/edit";
 
-//        usersService.update(id, user);
+        usersService.update(id, user);
         return "redirect:/users/" + id;
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id){
-//        usersService.delete(id);
+        usersService.delete(id);
         return "redirect:/users";
     }
 }
