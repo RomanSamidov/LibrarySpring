@@ -10,6 +10,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "role")
+@Cacheable
+@org.springframework.cache.annotation.Cacheable("roles")
 public class Role {
     @Id
     @Column(name = "id")

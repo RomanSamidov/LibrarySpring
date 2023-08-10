@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 //            uk_UA(2);
 @Entity
 @Table(name = "language")
+@org.springframework.cache.annotation.Cacheable("languages")
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,6 +4,7 @@ package my.project.library.repositories;
 
 import my.project.library.models.Role;
 import my.project.library.models.User;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,11 @@ import java.util.Optional;
 @Repository
 public interface RolesRepository extends JpaRepository<Role, Long> {
 
+    @Cacheable("roles")
     Optional<Role> findByName(String name);
+
+
+    @Override
+    @Cacheable("roles")
+    Optional<Role> findById(Long aLong);
 }

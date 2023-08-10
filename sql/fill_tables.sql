@@ -33,27 +33,27 @@ insert into "user" values (default, 'user21', '2000-12-11', 3, 2, 'email21@gmail
 insert into block values (21);
 
 
-insert into password values (1, 'password1');
-insert into password values (2, 'password2');
-insert into password values (3, 'password3');
-insert into password values (4, 'password4');
-insert into password values (5, 'password5');
-insert into password values (6, 'password6');
-insert into password values (7, 'password7');
-insert into password values (8, 'password8');
-insert into password values (9, 'password9');
-insert into password values (10, 'password10');
-insert into password values (11, 'password11');
-insert into password values (12, 'password12');
-insert into password values (13, 'password13');
-insert into password values (14, 'password14');
-insert into password values (15, 'password15');
-insert into password values (16, 'password16');
-insert into password values (17, 'password17');
-insert into password values (18, 'password18');
-insert into password values (19, 'password19');
-insert into password values (20, 'password20');
-insert into password values (21, 'password21');
+insert into password values (1, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (2, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (3, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (4, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (5, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (6, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (7, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (8, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (9, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (10, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (11, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (12, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (13, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (14, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (15, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (16, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (17, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (18, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (19, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (20, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
+insert into password values (21, '$2a$10$86Vz2AEDSfy0147T3Uc4TuQXR68nsI0RtBCUUEQ8H2G/GSlHuNdji');
 
 
 insert  into author values (default, 'author1');

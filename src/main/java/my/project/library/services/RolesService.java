@@ -27,6 +27,7 @@ public class RolesService {
         this.rolesRepository = rolesRepository;
     }
 
+    @org.springframework.cache.annotation.Cacheable("roles")
     public Role findOne(String name){
         return rolesRepository.findByName(name).stream().findFirst().orElseThrow( () -> new RuntimeException("Wrong ROLE name was " + name));
     }
@@ -36,6 +37,7 @@ public class RolesService {
         return rolesRepository.findAll();
     }
 
+    @org.springframework.cache.annotation.Cacheable("roles")
     public Role findOne(long id){
         return rolesRepository.findById(id).orElseThrow( () -> new RuntimeException("Wrong ROLE id expected from 1 to 3 but was " + id));
     }

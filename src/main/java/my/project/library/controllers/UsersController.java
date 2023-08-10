@@ -33,7 +33,7 @@ public class UsersController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") long id, Model model){
-        model.addAttribute("user", usersService.findOne(id));
+        model.addAttribute("user", usersService.findOne(id).get());
         return "users/show";
     }
 
@@ -53,7 +53,7 @@ public class UsersController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id){
-        model.addAttribute("user", usersService.findOne(id));
+        model.addAttribute("user", usersService.findOne(id).get());
         return "users/edit";
     }
 

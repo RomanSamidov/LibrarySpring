@@ -2,6 +2,9 @@ package my.project.library.config;
 
 
 
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -10,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -17,12 +21,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("roles", "languages");
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/", "/auth/login", "/auth/registration","/css/**", "/authors", "/error").permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().permitAll());
+//                        .anyRequest().authenticated());
 
         http.formLogin((form) -> form
                         .usernameParameter("username")
@@ -34,6 +43,10 @@ public class SecurityConfig {
 //                        .successForwardUrl("/")
                         .permitAll()
                         );
+
+        http.logout((form) -> form
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/auth/login"));
 
 //        http.httpBasic(Customizer.withDefaults());
 
@@ -51,21 +64,13 @@ public class SecurityConfig {
         authProvider.setPasswordEncoder(encoder());
         return authProvider;
 
+    }
+
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
 }
-
-    private PasswordEncoder encoder() {
-        return new PasswordEncoder() {
-            @Override
-            public String encode(CharSequence rawPassword) {
-                return String.valueOf(rawPassword);
-            }
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return String.valueOf(rawPassword).equals(encodedPassword);
-            }
-        };
-    }
-
-
-    }

@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Show user</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+<div class="center-div">
+<p th:text="${user.getId()}">Value</p>
+<p th:text="${user.getName()}">Value</p>
+<p th:text="${user.getLogin()}">Value</p>
+<p th:text="${user.getDateOfBirth()}">Value</p>
+<p th:text="${user.getRole()}">Value</p>
+<p th:text="${user.getLanguage()}">Value</p>
+<p th:text="${user.getEmail()}">Value</p>
+<p th:text="${user.isConfirmed()}">Value</p>
+
+
+<a th:href="@{/users/{id}/edit(id=${user.getId()})}"> Edit</a>
+<a href="/users">To users</a>
+</div>
 
 </body>
 </html>

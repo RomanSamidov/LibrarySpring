@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit user</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
+<div class="center-div">
+
+<p th:text="${user.getId()}">Value</p>
+<a href="/users">To users</a>
+
+
+<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+    <div><label> Name : <input type="text"  th:field="*{name}" /> </label></div>
+    <div style="color: red" th:if="*{#fields.hasErrors('name')}" th:errors="*{name}">Name errors</div>
+    <div><label> date of birth : <input type="date" th:field="*{dateOfBirth}" /> </label></div>
+    <div style="color: red" th:if="*{#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">dateOfBirth errors</div>
+    <div><label> Email : <input type="text" th:field="*{email}" /> </label></div>
+    <div style="color: red" th:if="*{#fields.hasErrors('email')}" th:errors="*{email}">email errors</div>
+    <div><label> Login : <input type="text" th:field="*{login}" /> </label></div>
+    <div style="color: red" th:if="*{#fields.hasErrors('login')}" th:errors="*{login}">login errors</div>
+    <br>
+    <input type="submit" value="Update!">
+</form>
+<br>
+<hr>
+
+<form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+    <input type="submit" value="Delete!">
+</form>
+
+
+</div>
 </body>
 </html>
