@@ -93,31 +93,38 @@ insert  into publisher values (default, 'publisher4');
 insert  into publisher values (default, 'publisher5');
 
 
-insert into book values (default, 19, 0, 'book1', 1, 1, 1999);
-insert into book values (default, 18, 0, 'book2', 1, 2, 2000);
-insert into book values (default, 17, 0, 'book3', 1, 3, 2001);
-insert into book values (default, 16, 0, 'book4', 1, 4, 2002);
-insert into book values (default, 15, 0, 'book5', 1, 5, 2003);
-insert into book values (default, 14, 0, 'book6', 2, 1, 2004);
-insert into book values (default, 13, 0, 'book7', 2, 2, 2009);
-insert into book values (default, 12, 0, 'book8', 2, 3, 2008);
-insert into book values (default, 11, 2, 'book9', 2, 4, 2007);
-insert into book values (default, 29, 2, 'book10', 2, 5, 2006);
-insert into book values (default, 28, 2, 'book11', 3, 1, 2005);
-insert into book values (default, 27, 2, 'book12', 3, 2, 2004);
-insert into book values (default, 26, 2, 'book13', 3, 3, 2003);
-insert into book values (default, 25, 0, 'book14', 3, 4, 2002);
-insert into book values (default, 24, 0, 'book15', 3, 5, 2001);
-insert into book values (default, 22, 0, 'book16', 4, 1, 2009);
-insert into book values (default, 23, 0, 'book17', 4, 2, 2008);
-insert into book values (default, 21, 0, 'book18', 4, 3, 2007);
-insert into book values (default, 19, 0, 'book19', 4, 4, 2006);
-insert into book values (default, 18, 0, 'book20', 4, 5, 2005);
-insert into book values (default, 17, 0, 'book21', 5, 1, 2004);
-insert into book values (default, 14, 0, 'book22', 5, 2, 2003);
-insert into book values (default, 15, 0, 'book23', 5, 3, 2009);
-insert into book values (default, 16, 0, 'book24', 5, 4, 2007);
-insert into book values (default, 19, 0, 'book25', 5, 5, 2006);
+insert into book values (default, 19, 0, 'book1',1, 1999);
+insert into book values (default, 18, 0, 'book2',2, 2000);
+insert into book values (default, 17, 0, 'book3',3, 2001);
+insert into book values (default, 16, 0, 'book4',4, 2002);
+insert into book values (default, 15, 0, 'book5',5, 2003);
+insert into book values (default, 14, 0, 'book6', 1, 2004);
+insert into book values (default, 13, 0, 'book7', 2, 2009);
+insert into book values (default, 12, 0, 'book8', 3, 2008);
+insert into book values (default, 11, 2, 'book9', 4, 2007);
+insert into book values (default, 29, 2, 'book10', 5, 2006);
+insert into book values (default, 28, 2, 'book11', 1, 2005);
+insert into book values (default, 27, 2, 'book12', 2, 2004);
+insert into book values (default, 26, 2, 'book13', 3, 2003);
+insert into book values (default, 25, 0, 'book14', 4, 2002);
+insert into book values (default, 24, 0, 'book15', 5, 2001);
+insert into book values (default, 22, 0, 'book16', 1, 2009);
+insert into book values (default, 23, 0, 'book17', 2, 2008);
+insert into book values (default, 21, 0, 'book18', 3, 2007);
+insert into book values (default, 19, 0, 'book19', 4, 2006);
+insert into book values (default, 18, 0, 'book20', 5, 2005);
+insert into book values (default, 17, 0, 'book21', 1, 2004);
+insert into book values (default, 14, 0, 'book22', 2, 2003);
+insert into book values (default, 15, 0, 'book23', 3, 2009);
+insert into book values (default, 16, 0, 'book24', 4, 2007);
+insert into book values (default, 19, 0, 'book25', 5, 2006);
+
+
+insert into author_book values (1, 4);
+insert into author_book values (1, 1);
+insert into author_book values (1, 2);
+insert into author_book values (1, 3);
+insert into author_book values (1, 5);
 
 
 insert into history values (default, 4, 1, '2023-07-15', '2023-07-20');

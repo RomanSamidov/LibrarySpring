@@ -7,6 +7,7 @@ drop table if exists status cascade;
 drop table if exists cart cascade;
 drop table if exists history cascade;
 drop table if exists book_tag cascade;
+drop table if exists author_book cascade;
 drop table if exists tag cascade;
 drop table if exists book cascade;
 drop table if exists publisher cascade;
@@ -38,7 +39,7 @@ create table "user"(
     id bigint generated always as identity primary key,
     name varchar(64) not null,
     date_of_birth date not null,
-    language_id bigint references role(id) default(1) not null,
+    language_id bigint references language(id) default(1) not null,
     email varchar(64) not null,
     allow_letters bool default(true) not null,
     confirmed bool default(false) not null,
@@ -75,9 +76,14 @@ create table book(
     quantity smallint not null CONSTRAINT CHK_quantity CHECK (quantity >= 0),
     occupied smallint not null CONSTRAINT CHK_occupied CHECK (occupied >= 0 and quantity >= occupied),
     title varchar(128) not null,
-    author_id bigint references author(id) on delete cascade not null,
     publisher_id bigint references publisher(id) on delete cascade not null,
     year smallint not null
+);
+
+create table author_book(
+    author_id bigint references author(id) on delete cascade not null,
+    book_id bigint references book(id) on delete cascade not null,
+    primary key (author_id, book_id)
 );
 
 create table history(
@@ -113,7 +119,8 @@ create table "order"(
 create table order_book(
     order_id bigint references "order"(id) on delete cascade not null,
     book_id bigint references book(id) on delete cascade not null,
-    quantity smallint not null CONSTRAINT CHK_quantity CHECK (quantity > 0)
+    quantity smallint not null CONSTRAINT CHK_quantity CHECK (quantity > 0),
+    primary key (order_id, book_id)
 );
 
 create table type(
@@ -141,5 +148,6 @@ create table tag(
 
 create table book_tag(
     book_id bigint references book(id) on delete cascade not null,
-    category_id bigint references tag(id) on delete cascade not null
+    tag_id bigint references tag(id) on delete cascade not null,
+    primary key (book_id, tag_id)
 );

@@ -39,7 +39,6 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "authority_id"})})
-
     private Set<Authority> authorities = new HashSet<>();
 //
     @OneToOne(fetch = FetchType.EAGER)
@@ -107,11 +106,6 @@ public class User {
             s = a.equals("ROLE_LIBRARIAN") ? "LIBRARIAN":s;
             s = a.equals("ROLE_ADMIN") ? "ADMIN":s;
         }
-
-
-//        if(authorities.contains("ROLE_ADMIN")) return "ADMIN";
-//        if(authorities.contains("ROLE_LIBRARIAN")) return "LIBRARIAN";
-//        if(authorities.contains("ROLE_READER")) return "READER";
 
         return s;
     }

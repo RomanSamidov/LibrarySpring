@@ -16,7 +16,8 @@ Tables:
 
 - author(id, name)
 - publisher(id, name)
-- book(id, quantity, occupied, title, author_id, publisher_id, year)
+- book(id, quantity, occupied, title, publisher_id, year)
+- author_book(author_id, book_id)
 - tag(id, name)
 - book_tag(book_id, tag_id)
 

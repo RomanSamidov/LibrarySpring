@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 @Entity
 @Table(name ="publisher")
 public class Publisher {
@@ -16,6 +21,9 @@ public class Publisher {
     @Size(min=0, max=64, message = "Max size for name is 64")
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "publisher")
+    private Set<Book> books = new HashSet<Book>();
 
 
     public Publisher() {
@@ -40,5 +48,13 @@ public class Publisher {
 
     public Long getId() {
         return id;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }
