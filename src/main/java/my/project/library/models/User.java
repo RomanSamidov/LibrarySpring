@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 import java.sql.Date;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user", schema = "public")
@@ -15,6 +18,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
+
     @NotEmpty(message = "Name cant be empty")
     @Size(min=0, max=64, message = "Max size for name is 64")
     @Column(name = "name")
@@ -23,10 +28,22 @@ public class User {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Role role;
+//    @ManyToMany(cascade = { CascadeType.ALL })
+//    @JoinTable(
+//            name = "user_authority",
+//            joinColumns = { @JoinColumn(name = "user_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "authority_id") }
+//    )
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authority",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "authority_id"})})
 
-    @OneToOne(fetch = FetchType.LAZY)
+    private Set<Authority> authorities = new HashSet<>();
+//
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "language_id")
     private Language language;
 
     @NotEmpty(message = "Email cant be empty")
@@ -45,6 +62,17 @@ public class User {
     @Column(name = "login")
     private String login;
 
+    public Set<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public void addAuthorities(Authority... authorities) {
+        Collections.addAll(this.authorities, authorities);
+    }
 
     public long getId() {
         return id;
@@ -62,6 +90,7 @@ public class User {
         this.name = name;
     }
 
+
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
@@ -70,12 +99,21 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Role getRole() {
-        return role;
-    }
+    public String getRole(){
+         String s = "NO_ROLE";
 
-    public void setRole(Role role) {
-        this.role = role;
+        for (Authority a : authorities) {
+            s = a.equals("ROLE_READER") ? "READER":s;
+            s = a.equals("ROLE_LIBRARIAN") ? "LIBRARIAN":s;
+            s = a.equals("ROLE_ADMIN") ? "ADMIN":s;
+        }
+
+
+//        if(authorities.contains("ROLE_ADMIN")) return "ADMIN";
+//        if(authorities.contains("ROLE_LIBRARIAN")) return "LIBRARIAN";
+//        if(authorities.contains("ROLE_READER")) return "READER";
+
+        return s;
     }
 
     public Language getLanguage() {
@@ -85,6 +123,8 @@ public class User {
     public void setLanguage(Language language) {
         this.language = language;
     }
+
+
 
     public String getEmail() {
         return email;

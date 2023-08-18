@@ -15,17 +15,28 @@ public class RegistrationService {
 
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthoritiesService authoritiesService;
+    private final LanguagesService languagesService;
     private final PasswordsRepository passwordsRepository;
 
     @Autowired
-    public RegistrationService(UsersRepository usersRepository, PasswordEncoder passwordEncoder, PasswordsRepository passwordsRepository) {
+    public RegistrationService(UsersRepository usersRepository,
+                               PasswordEncoder passwordEncoder,
+                               AuthoritiesService authoritiesService,
+                               LanguagesService languagesService,
+                               PasswordsRepository passwordsRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authoritiesService = authoritiesService;
+        this.languagesService = languagesService;
         this.passwordsRepository = passwordsRepository;
     }
 
     @Transactional
     public void register(User user, Password password){
+        user.addAuthorities(authoritiesService.READER);
+        user.setLanguage(languagesService.ENGLISH);
+        password.setUser(user);
         usersRepository.save(user);
         password.setPasswordText(passwordEncoder.encode(password.getPasswordText()));
         passwordsRepository.save(password);

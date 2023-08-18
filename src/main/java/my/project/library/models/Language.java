@@ -2,6 +2,9 @@ package my.project.library.models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 //            en_US(1),
 //            uk_UA(2);
@@ -16,16 +19,29 @@ public class Language {
     @Column(name = "name")
     private String name;
 
+    @OneToMany(fetch = FetchType.LAZY )
+    @JoinColumn(name = "language_id")
+    private Set<User> userSet = new HashSet<User>();
+
+
+    public Language() {
+    }
+
     public Language(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Language() {
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
     }
 
     public Long getId() {

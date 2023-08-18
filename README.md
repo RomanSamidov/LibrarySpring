@@ -6,9 +6,10 @@ Use Hibernate, Spring Data JPA.
 
 
 Tables:
-- role(id, name)
+- authority(id, name)
 - language(id, name)
-- user(id, name, date_of_birth, role_id, language_id, email, allow_letters, confirmed, login)
+- user(id, name, date_of_birth, language_id, email, allow_letters, confirmed, login)
+- user_authority(user_id, authority_id)
 - block(user_id)
 - password(user_id, password)
 
@@ -30,9 +31,9 @@ Tables:
 
 
 User roles: 
-- admin;
-- librarian;
-- reader.
+- ROLE_ADMIN;
+- ROLE_LIBRARIAN;
+- ROLE_READER.
 
 Languages:
 - en_US;

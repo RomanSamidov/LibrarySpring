@@ -6,6 +6,7 @@ import my.project.library.repositories.AuthorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,6 +51,7 @@ public class AuthorsService {
         return authorsRepository.findById(id);
     }
 
+    @PreAuthorize("hasRole('admin')")
     @Transactional
     public void save(Author author){
         authorsRepository.save(author);

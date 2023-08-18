@@ -15,14 +15,16 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class LanguagesService {
 
-    public final String ENGLISH = "en_US";
-    public final String UKRAINIAN = "uk_UA";
+    public final Language ENGLISH;
+    public final Language UKRAINIAN;
 
     private final LanguagesRepository languagesRepository;
 
     @Autowired
     public LanguagesService(LanguagesRepository languagesRepository) {
         this.languagesRepository = languagesRepository;
+        ENGLISH = findOne("en_US");
+        UKRAINIAN = findOne("uk_UA");
     }
 
     public Language findOne(String name){

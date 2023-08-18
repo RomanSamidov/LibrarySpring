@@ -1,4 +1,5 @@
 drop table if exists user_book cascade;
+drop table if exists user_authority cascade;
 drop table if exists type cascade;
 drop table if exists order_book cascade;
 drop table if exists "order" cascade;
@@ -14,36 +15,40 @@ drop table if exists password cascade;
 drop table if exists block cascade;
 drop table if exists "user" cascade;
 drop table if exists language cascade;
-drop table if exists role cascade;
+drop table if exists authority cascade;
 
 
-create table role(
+create table authority(
     id bigint generated always as identity primary key,
-    name varchar(16) not null unique
+    name varchar(64) not null unique
 );
 
-insert into role values (default, 'admin');
-insert into role values (default, 'librarian');
-insert into role values (default, 'reader');
+insert into authority values (default, 'ROLE_ADMIN');
+insert into authority values (default, 'ROLE_LIBRARIAN');
+insert into authority values (default, 'ROLE_READER');
 
 create table language(
     id bigint generated always as identity primary key,
     name varchar(8) not null unique
 );
 INSERT INTO language VALUES (DEFAULT, 'en_US');
-
 INSERT INTO language VALUES (DEFAULT, 'uk_UA');
 
 create table "user"(
     id bigint generated always as identity primary key,
     name varchar(64) not null,
     date_of_birth date not null,
-    role_id bigint references role(id) on delete cascade not null,
-    language_id bigint references language(id) default(1) not null,
+    language_id bigint references role(id) default(1) not null,
     email varchar(64) not null,
     allow_letters bool default(true) not null,
     confirmed bool default(false) not null,
     login varchar(64) not null unique
+);
+
+create table user_authority(
+    user_id bigint references "user"(id) on delete cascade not null,
+    authority_id bigint references authority(id) on delete cascade not null,
+    primary key (user_id, authority_id)
 );
 
 create table block(

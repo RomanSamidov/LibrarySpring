@@ -1,33 +1,56 @@
--- insert into role values (default, 'admin');
--- insert into role values (default, 'librarian');
--- insert into role values (default, 'reader');
+-- insert into authority values (default, 'ROLE_ADMIN');
+-- insert into authority values (default, 'ROLE_LIBRARIAN');
+-- insert into authority values (default, 'ROLE_READER');
 
 -- insert into status values (default, 'created');
 -- insert into status values (default, 'preparing');
 -- insert into status values (default, 'ready');
 
-insert into "user" values (default, 'Admin', '2000-12-11', 1, 1, 'admin1@gmail.com', default, default, 'admin1');
-insert into "user" values (default, 'Librarian', '2000-12-11', 2, 1, 'librarian1@gmail.com', default, default, 'librarian1');
-insert into "user" values (default, 'Librarian', '2000-12-11', 2, 1, 'librarian2@gmail.com', default, default, 'librarian2');
+insert into "user" values (default, 'Admin', '2000-12-11', 1, 'admin1@gmail.com', default, default, 'admin1');
+insert into "user" values (default, 'Librarian', '2000-12-11', 1, 'librarian1@gmail.com', default, default, 'librarian1');
+insert into "user" values (default, 'Librarian', '2000-12-11', 1, 'librarian2@gmail.com', default, default, 'librarian2');
 
-insert into "user" values (default, 'user4', '2000-12-11', 3, 2, 'email4@gmail.com', default, default, 'login4');
-insert into "user" values (default, 'user5', '2000-12-11', 3, 2, 'email5@gmail.com', default, default, 'login5');
-insert into "user" values (default, 'user6', '2000-12-11', 3, 2, 'email6@gmail.com', default, default, 'login6');
-insert into "user" values (default, 'user7', '2000-12-11', 3, 2, 'emai7@gmail.com', default, default, 'login7');
-insert into "user" values (default, 'user8', '2000-12-11', 3, 2, 'email8@gmail.com', default, default, 'login8');
-insert into "user" values (default, 'user9', '2000-12-11', 3, 2, 'email9@gmail.com', default, default, 'login9');
-insert into "user" values (default, 'user10', '2000-12-11', 3, 2, 'email10@gmail.com', default, default, 'login10');
-insert into "user" values (default, 'user11', '2000-12-11', 3, 2, 'email11@gmail.com', default, default, 'login11');
-insert into "user" values (default, 'user12', '2000-12-11', 3, 2, 'email12@gmail.com', default, default, 'login12');
-insert into "user" values (default, 'user13', '2000-12-11', 3, 2, 'email13@gmail.com', default, default, 'login13');
-insert into "user" values (default, 'user14', '2000-12-11', 3, 2, 'email14@gmail.com', default, default, 'login14');
-insert into "user" values (default, 'user15', '2000-12-11', 3, 2, 'email15@gmail.com', default, default, 'login15');
-insert into "user" values (default, 'user16', '2000-12-11', 3, 2, 'email16@gmail.com', default, default, 'login16');
-insert into "user" values (default, 'user17', '2000-12-11', 3, 2, 'email17@gmail.com', default, default, 'login17');
-insert into "user" values (default, 'user18', '2000-12-11', 3, 2, 'email18@gmail.com', default, default, 'login18');
-insert into "user" values (default, 'user19', '2000-12-11', 3, 2, 'email19@gmail.com', default, default, 'login19');
-insert into "user" values (default, 'user20', '2000-12-11', 3, 2, 'email20@gmail.com', default, default, 'login20');
-insert into "user" values (default, 'user21', '2000-12-11', 3, 2, 'email21@gmail.com', default, default, 'login21');
+insert into "user" values (default, 'user4', '2000-12-11', 2, 'email4@gmail.com', default, default, 'login4');
+insert into "user" values (default, 'user5', '2000-12-11', 2, 'email5@gmail.com', default, default, 'login5');
+insert into "user" values (default, 'user6', '2000-12-11', 2, 'email6@gmail.com', default, default, 'login6');
+insert into "user" values (default, 'user7', '2000-12-11', 2, 'emai7@gmail.com', default, default, 'login7');
+insert into "user" values (default, 'user8', '2000-12-11', 2, 'email8@gmail.com', default, default, 'login8');
+insert into "user" values (default, 'user9', '2000-12-11', 2, 'email9@gmail.com', default, default, 'login9');
+insert into "user" values (default, 'user10', '2000-12-11', 2, 'email10@gmail.com', default, default, 'login10');
+insert into "user" values (default, 'user11', '2000-12-11', 2, 'email11@gmail.com', default, default, 'login11');
+insert into "user" values (default, 'user12', '2000-12-11', 2, 'email12@gmail.com', default, default, 'login12');
+insert into "user" values (default, 'user13', '2000-12-11', 2, 'email13@gmail.com', default, default, 'login13');
+insert into "user" values (default, 'user14', '2000-12-11', 2, 'email14@gmail.com', default, default, 'login14');
+insert into "user" values (default, 'user15', '2000-12-11', 2, 'email15@gmail.com', default, default, 'login15');
+insert into "user" values (default, 'user16', '2000-12-11', 2, 'email16@gmail.com', default, default, 'login16');
+insert into "user" values (default, 'user17', '2000-12-11', 2, 'email17@gmail.com', default, default, 'login17');
+insert into "user" values (default, 'user18', '2000-12-11', 2, 'email18@gmail.com', default, default, 'login18');
+insert into "user" values (default, 'user19', '2000-12-11', 2, 'email19@gmail.com', default, default, 'login19');
+insert into "user" values (default, 'user20', '2000-12-11', 2, 'email20@gmail.com', default, default, 'login20');
+insert into "user" values (default, 'user21', '2000-12-11', 2, 'email21@gmail.com', default, default, 'login21');
+
+insert into user_authority values (1, 1);
+insert into user_authority values (2, 2);
+insert into user_authority values (3, 2);
+
+insert into user_authority values (4, 3);
+insert into user_authority values (5, 3);
+insert into user_authority values (6, 3);
+insert into user_authority values (7, 3);
+insert into user_authority values (8, 3);
+insert into user_authority values (9, 3);
+insert into user_authority values (10, 3);
+insert into user_authority values (11, 3);
+insert into user_authority values (12, 3);
+insert into user_authority values (13, 3);
+insert into user_authority values (14, 3);
+insert into user_authority values (15, 3);
+insert into user_authority values (16, 3);
+insert into user_authority values (17, 3);
+insert into user_authority values (18, 3);
+insert into user_authority values (19, 3);
+insert into user_authority values (20, 3);
+insert into user_authority values (21, 3);
 
 
 insert into block values (21);
