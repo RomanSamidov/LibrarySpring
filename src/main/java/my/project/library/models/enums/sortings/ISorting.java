@@ -6,5 +6,5 @@ public interface ISorting {
 
     public Sort.Direction getDirection();
 
-    public String getProperties();
+    public String getProperty();
 }

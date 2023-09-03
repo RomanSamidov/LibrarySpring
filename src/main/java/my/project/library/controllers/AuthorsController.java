@@ -59,8 +59,10 @@ public class AuthorsController {
     }
 
     @GetMapping("/new")
-    public String newAuthor(Model model){
-        model.addAttribute("author", new Author());
+    public String newAuthor(Model model, @ModelAttribute(value = "author") Author author){
+        if(author == null) {
+            model.addAttribute("author", new Author());
+        }
         return "authors/new";
     }
 

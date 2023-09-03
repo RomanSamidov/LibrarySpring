@@ -2,6 +2,7 @@ package my.project.library.services;
 
 import my.project.library.models.Author;
 import my.project.library.models.enums.sortings.AuthorsSorting;
+import my.project.library.models.enums.sortings.ISorting;
 import my.project.library.repositories.AuthorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -32,16 +33,16 @@ public class AuthorsService {
         return authorsRepository.findByNameStartingWith(
                 startingWith,
                 PageRequest.of(page, size,Sort.by(sorting.getDirection(),
-                        sorting.getProperties())));
+                        sorting.getProperty())));
     }
     public long countAllStartingWith(String startingWith){
         return authorsRepository.countByNameStartingWith(startingWith);
     }
 
 
-    public List<Author> findAll(int page, int size, AuthorsSorting sorting){
+    public List<Author> findAll(int page, int size, ISorting sorting){
         return authorsRepository.findAll(
-                PageRequest.of(page, size, Sort.by(sorting.getDirection(), sorting.getProperties()))).stream().toList();
+                PageRequest.of(page, size, Sort.by(sorting.getDirection(), sorting.getProperty()))).stream().toList();
     }
     public long countAll(){
         return authorsRepository.count();
@@ -51,7 +52,7 @@ public class AuthorsService {
         return authorsRepository.findById(id);
     }
 
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasRole('ADMIN')")
     @Transactional
     public void save(Author author){
         authorsRepository.save(author);

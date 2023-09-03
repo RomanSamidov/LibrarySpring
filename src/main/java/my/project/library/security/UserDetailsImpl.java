@@ -7,7 +7,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 
 public class UserDetailsImpl implements UserDetails {
@@ -23,7 +22,7 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         HashSet<SimpleGrantedAuthority> authorities = new HashSet<>();
-        user.getAuthorities().forEach(a-> authorities.add(new SimpleGrantedAuthority(a.getName())));
+        user.getAuthorities().forEach(a-> authorities.add(new SimpleGrantedAuthority(a.name())));
         return authorities;
     }
 

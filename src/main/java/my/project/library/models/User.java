@@ -3,6 +3,11 @@ package my.project.library.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import my.project.library.models.enums.entityes.Authority;
+import my.project.library.models.enums.entityes.Language;
+import my.project.library.models.enums.entityes.converters.AuthorityConverter;
+import my.project.library.models.enums.entityes.converters.LanguageConverter;
+import org.hibernate.annotations.Type;
 
 import java.sql.Date;
 import java.util.Collections;
@@ -34,15 +39,26 @@ public class User {
 //            joinColumns = { @JoinColumn(name = "user_id") },
 //            inverseJoinColumns = { @JoinColumn(name = "authority_id") }
 //    )
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_authority",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id"),
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "authority_id"})})
+
+
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_authority",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "authority_id"),
+//            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "authority_id"})})
+
+    @ElementCollection(targetClass = Authority.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "authority_id", nullable = false)
+//    @Type(type = "com.sample.data.common.IntValuedEnumType", parameters = { @Parameter(name = "enumClass", value = "com.sample.data.model.types.Category") })
+//    private Set<Category> categories = new HashSet<Category>();
+
+    @Convert(converter = AuthorityConverter.class)
     private Set<Authority> authorities = new HashSet<>();
-//
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "language_id")
+
+
+    @Column(name = "language_id")
+    @Convert(converter = LanguageConverter.class)
     private Language language;
 
     @NotEmpty(message = "Email cant be empty")
@@ -102,9 +118,10 @@ public class User {
          String s = "NO_ROLE";
 
         for (Authority a : authorities) {
-            s = a.equals("ROLE_READER") ? "READER":s;
-            s = a.equals("ROLE_LIBRARIAN") ? "LIBRARIAN":s;
-            s = a.equals("ROLE_ADMIN") ? "ADMIN":s;
+            String aut = a.name();
+            s = aut.equals("ROLE_READER") ? "READER":s;
+            s = aut.equals("ROLE_LIBRARIAN") ? "LIBRARIAN":s;
+            s = aut.equals("ROLE_ADMIN") ? "ADMIN":s;
         }
 
         return s;

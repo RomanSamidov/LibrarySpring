@@ -2,6 +2,8 @@ package my.project.library.services;
 
 import my.project.library.models.Password;
 import my.project.library.models.User;
+import my.project.library.models.enums.entityes.Authority;
+import my.project.library.models.enums.entityes.Language;
 import my.project.library.repositories.PasswordsRepository;
 import my.project.library.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +17,24 @@ public class RegistrationService {
 
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
-    private final AuthoritiesService authoritiesService;
-    private final LanguagesService languagesService;
+
     private final PasswordsRepository passwordsRepository;
 
     @Autowired
     public RegistrationService(UsersRepository usersRepository,
                                PasswordEncoder passwordEncoder,
-                               AuthoritiesService authoritiesService,
-                               LanguagesService languagesService,
                                PasswordsRepository passwordsRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
-        this.authoritiesService = authoritiesService;
-        this.languagesService = languagesService;
         this.passwordsRepository = passwordsRepository;
     }
 
     @Transactional
     public void register(User user, Password password){
-        user.addAuthorities(authoritiesService.READER);
-        user.setLanguage(languagesService.ENGLISH);
+//        user.addAuthorities(authoritiesService.READER);
+        user.addAuthorities(Authority.ROLE_READER);
+
+        user.setLanguage(Language.en_US);
         password.setUser(user);
         usersRepository.save(user);
         password.setPasswordText(passwordEncoder.encode(password.getPasswordText()));

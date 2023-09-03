@@ -7,6 +7,19 @@
 </head>
 <body>
 <div class="center-div">
+    <form th:method="GET" th:action="@{/users}" >
+        <label for="startingWith">startingWith: </label>
+        <input type="text" th:value="${startingWith}" name="startingWith" id="startingWith">
+        <select name="search">
+            <div th:each="searching : ${searchFields}">
+                <option th:value="${searching.getProperty()}" th:text="${searching.getProperty()}">${searching.getProperty()}</option>
+            </div>
+        </select>
+        <input type="submit" value="Find!">
+    </form>
+    <a href="/users/new"> Create new user!</a>
+    <br><br><br>
+    <br>
     <table class="center-table">
         <tr>
             <th> <a>ID</a> </th>
@@ -45,6 +58,67 @@
             </td>
         </tr>
     </table>
+
+
+    <br><br><br>
+    <form th:method="GET" th:action="@{/users}" >
+        <label>sorting: </label>
+        <select name="sort">
+            <div th:each="sort : ${sorting}">
+                <option th:value="${sort.name()}" th:text="${sort.name()}">${sort.name()}</option>
+            </div>
+        </select>
+        <input type="submit" value="Sort!">
+    </form>
+
+
+    <form th:method="GET" th:action="@{/users}" >
+        <label>Size on one page</label>
+        <input type="hidden" th:value="${startingWith}" name="startingWith">
+        <input type="hidden" th:value="0" name="page">
+        <input type="number" min="1" size="3" th:value="${size}" name="size">
+        <input type="submit" value="change size">
+    </form>
+
+
+    <table>
+        <tr>
+            <form th:method="GET" th:action="@{/users}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="0" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value="<<">
+            </form>
+
+            <form th:method="GET" th:action="@{/users}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="${page}-1" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value="<">
+            </form>
+            <form th:method="GET" th:action="@{/users}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="number" min="1" size="3" th:max="${maxPage}" th:value="${page}" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <a th:text="${#strings.concat(page, ' of ', maxPage)}"/>
+                <input type="submit" value="to page!">
+            </form>
+
+            <form th:method="GET" th:action="@{/users}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="${page}+1" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value=">">
+            </form>
+            <form th:method="GET" th:action="@{/users}" >
+                <input type="hidden" th:value="${startingWith}" name="startingWith">
+                <input type="hidden" th:value="${maxPage}" name="page">
+                <input type="hidden" th:value="${size}" name="size">
+                <input type="submit" value=">>">
+            </form>
+        </tr>
+    </table>
+
 
 
 </div>

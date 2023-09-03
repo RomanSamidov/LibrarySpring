@@ -1,8 +1,13 @@
 package my.project.library.services;
 
+import my.project.library.dao.UserDao;
 import my.project.library.models.User;
+import my.project.library.models.enums.searchFields.ISearchFields;
+import my.project.library.models.enums.sortings.ISorting;
 import my.project.library.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +18,12 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class UsersService {
     private final UsersRepository usersRepository;
+    private final UserDao userDao;
 
     @Autowired
-    public UsersService(UsersRepository usersRepository) {
+    public UsersService(UsersRepository usersRepository, UserDao userDao) {
         this.usersRepository = usersRepository;
+        this.userDao = userDao;
     }
 
 //    public Optional<User> findOne(String name){
@@ -37,6 +44,23 @@ public class UsersService {
     }
     public Optional<User> findOne(String login){
         return usersRepository.findByLogin(login);
+    }
+
+    public List<User> findAllWithAuthoritiesAndLanguage(int page, int size, ISorting sorting){
+        return userDao.findAllWithAuthoritiesAndLanguage(PageRequest.of(page, size, Sort.by(sorting.getDirection(), sorting.getProperty()))).stream().toList();
+    }
+
+    public long countAll(){
+        return usersRepository.count();
+    }
+    public long countAllStartingWith(String startingWith, ISearchFields searchFields){
+        return userDao.count(startingWith, searchFields);
+    }
+
+    public List<User> findAllStartingWithWithAuthoritiesAndLanguage(String startingWith, int page, int size, ISorting sorting, ISearchFields searchFields){
+        return userDao.findAllStartingWithWithAuthoritiesAndLanguage(startingWith,
+                PageRequest.of(page, size, Sort.by(sorting.getDirection(), sorting.getProperty())),
+                searchFields).stream().toList();
     }
 
     @Transactional
